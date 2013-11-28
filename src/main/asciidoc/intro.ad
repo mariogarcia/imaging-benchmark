@@ -1,0 +1,19 @@
+= Java Image Tools benchmark 
+
+== Motivation 
+
+I've made this project because at some point I needed a pure Java library to use it in one of my projects. Eventually It has become an a examples like repository about Java image processing.
+
+== Libraries
+
+* JAVA: Regular Java classes from JDK
+* IMGS: imgscalr (https://github.com/thebuzzmedia/imgscalr)
+* JISC: java-image-scaling (http://code.google.com/p/java-image-scaling/)
+
+== Non tested yet
+
+* BATI: Apache Batic SVG generator (http://xmlgraphics.apache.org/batik/using/svg-generator.html)
+
+== Resources
+
+* java2s.com: Many examples (http://www.java2s.com/Code/JavaAPI/java.awt.image/Catalogjava.awt.image.htm)
