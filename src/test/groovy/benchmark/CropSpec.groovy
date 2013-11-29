@@ -25,6 +25,7 @@ import javax.imageio.ImageIO
 import groovyx.gbench.Benchmark
 import spock.lang.Specification
 
+import java.nio.file.Paths
 import java.awt.Image
 import java.awt.Toolkit
 
@@ -32,6 +33,9 @@ import java.awt.image.CropImageFilter
 import java.awt.image.FilteredImageSource
 
 import org.imgscalr.Scalr
+
+import org.im4java.core.IMOperation
+import org.im4java.core.ConvertCmd
 
 /**
  * This specification crops an image using several imaging java libraries
@@ -71,5 +75,38 @@ class CropSpec extends Specification {
         then: 'The cropped image has the required dimensions'
             assertThat result.height, is(CROP_DATA.height)
             assertThat result.width, is(CROP_DATA.width)
+    }
+
+    @Benchmark
+    void 'IM4J: Simple croping'() {
+        setup: 'Result filename and command operation'
+            String resultFilename = getTemporalFilename()
+            ConvertCmd command = new ConvertCmd()
+            IMOperation cropOperation = new IMOperation()
+        when:'Croping the image'
+           cropOperation.addImage(SAMPLE_FILE.path)
+           cropOperation.crop(CROP_DATA.width, CROP_DATA.height, CROP_DATA.x, CROP_DATA.y)
+           cropOperation.addImage(resultFilename)
+        and: 'Executing the command'
+           command.run(cropOperation)
+        and: 'Retrieving result image'
+            BufferedImage result = ImageIO.read(new File(resultFilename))
+        then: 'The cropped image has the required dimensions'
+            assertThat result.height, is(CROP_DATA.height)
+            assertThat result.width, is(CROP_DATA.width)
+    }
+
+    /**
+     * We dont want to create a temporary file, just a
+     * name of a possible new file
+     */
+    def getTemporalFilename() {
+
+       return Paths
+        .get(System.getProperty("java.io.tmpdir"))
+        .resolve("${new Date().time.toString()}.jpg")
+        .toFile()
+        .getPath()
+
     }
 }
