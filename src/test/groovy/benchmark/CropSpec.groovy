@@ -23,6 +23,8 @@ import java.awt.image.BufferedImage
 import javax.imageio.ImageIO
 
 import groovyx.gbench.Benchmark
+
+import spock.lang.IgnoreIf
 import spock.lang.Specification
 
 import java.nio.file.Paths
@@ -78,6 +80,7 @@ class CropSpec extends Specification {
     }
 
     @Benchmark
+    @IgnoreIf(Im4JavaNotAvailable)
     void 'IM4J: Simple croping'() {
         setup: 'Result filename and command operation'
             String resultFilename = getTemporalFilename()
