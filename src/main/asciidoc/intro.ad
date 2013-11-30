@@ -9,10 +9,14 @@ I've made this project because at some point I needed a pure Java library to use
 * JAVA: Regular Java classes from JDK
 * IMGS: imgscalr (https://github.com/thebuzzmedia/imgscalr)
 * JISC: java-image-scaling (http://code.google.com/p/java-image-scaling/)
+* IM4J: im4java (http://im4java.sourceforge.net/)
+
+Specs concerning Im4java are annotated with @IgnoreIf(Im4JavaNotAvailable) in order not to
+interrupt the rest of the specs if Im4Java is not installed in your system.
 
 == Non tested yet
 
-* BATI: Apache Batic SVG generator (http://xmlgraphics.apache.org/batik/using/svg-generator.html)
+* BATI: Apache Batik SVG generator (http://xmlgraphics.apache.org/batik/using/svg-generator.html)
 
 == Resources
 
