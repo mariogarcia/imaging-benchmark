@@ -61,8 +61,10 @@ class CropSpec extends Specification {
             BufferedImage result =
                 Scalr.crop(source, CROP_DATA.x, CROP_DATA.y, CROP_DATA.width, CROP_DATA.height)
         then: 'The cropped image has the required dimensions'
-            assertThat result.height, is(CROP_DATA.height)
-            assertThat result.width, is(CROP_DATA.width)
+            with(result) {
+                assertThat height, is(CROP_DATA.height)
+                assertThat width, is(CROP_DATA.width)
+            }
     }
 
     @Benchmark
@@ -75,8 +77,10 @@ class CropSpec extends Specification {
         when:'Croping the image'
             Image result = Toolkit.defaultToolkit.createImage(filteredImage)
         then: 'The cropped image has the required dimensions'
-            assertThat result.height, is(CROP_DATA.height)
-            assertThat result.width, is(CROP_DATA.width)
+            with(result) {
+                assertThat height, is(CROP_DATA.height)
+                assertThat width, is(CROP_DATA.width)
+            }
     }
 
     @Benchmark
@@ -95,8 +99,10 @@ class CropSpec extends Specification {
         and: 'Retrieving result image'
             BufferedImage result = ImageIO.read(new File(resultFilename))
         then: 'The cropped image has the required dimensions'
-            assertThat result.height, is(CROP_DATA.height)
-            assertThat result.width, is(CROP_DATA.width)
+            with(result) {
+                assertThat height, is(CROP_DATA.height)
+                assertThat width, is(CROP_DATA.width)
+            }
     }
 
     /**
