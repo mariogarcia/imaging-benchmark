@@ -36,6 +36,9 @@ repositories {
 dependencies {
     // We use the latest groovy 2.x version for building this library
     compile 'org.codehaus.groovy:groovy:2.1.7'
+    compile('org.codehaus.gpars:gpars:1.1.0') {
+        exclude module: 'groovy'
+    }
     compile 'org.codenarc:CodeNarc:0.19'
 
     /* Image processing libraries */
