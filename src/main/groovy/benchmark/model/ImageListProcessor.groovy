@@ -1,12 +1,12 @@
 package benchmark.model
 
-import java.awt.image.BufferedImage
+import java.nio.file.Path
 /**
  *
  */
 interface ImageListProcessor {
 
-    abstract void process(List<BufferedImage> images)
+    abstract Integer process(List<Path> imagePathList)
 
 }
 
