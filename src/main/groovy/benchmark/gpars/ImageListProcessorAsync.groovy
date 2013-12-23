@@ -1,4 +1,4 @@
-package benchmark.gpars.async
+package benchmark.gpars
 
 import groovyx.gpars.GParsPool
 import org.imgscalr.Scalr

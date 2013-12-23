@@ -1,4 +1,4 @@
-package benchmark.gpars.async
+package benchmark.gpars
 
 import java.nio.file.Path
 import java.nio.file.Paths
@@ -8,18 +8,18 @@ import spock.lang.Specification
 /**
  *
  */
-class ImageListProcessorAsyncSpec extends Specification {
+class ImageListProcessorParallelSpec extends Specification {
 
     static final Path SAMPLE_FILE = Paths.get('src/test/resources/image-to-scale.jpg')
 
-    def 'Executing several long processes asynchronously'() {
+    def 'Executing several long processes in parallel'() {
         given: 'A list of images'
             def listOfImages = generateSampleImages()
         when: 'Processing all of them'
-            def successfullyProcessedImages =
-                new ImageListProcessorAsync().process(listOfImages)
+            def processor = new ImageListProcessorParallel()
+            def processedImages = processor.process(listOfImages)
         then: 'We should get all the results eventually'
-            successfullyProcessedImages == listOfImages.size()
+            processedImages == listOfImages.size()
     }
 
     def generateSampleImages() {
