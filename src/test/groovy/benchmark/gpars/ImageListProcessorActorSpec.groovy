@@ -4,6 +4,7 @@ import java.nio.file.Path
 import java.nio.file.Paths
 import java.nio.file.Files
 import spock.lang.Specification
+import groovyx.gpars.agent.Agent
 
 /**
  * ImageListProcessorActorSpec.groovy
@@ -17,7 +18,8 @@ class ImageListProcessorActorSpec extends Specification {
     def 'Executing several long processes asynchronously'() {
         given: 'A list of images'
             def listOfImages = generateSampleImages()
-            def processor = new ImageListProcessorActor().start()
+            def agent = new Agent(0)
+            def processor = new ImageListProcessorActor(agent).start()
         when: 'Processing all of them'
             listOfImages.each { image ->
                 processor << image.toFile().absolutePath
@@ -25,7 +27,7 @@ class ImageListProcessorActorSpec extends Specification {
             processor.send 'stop'
             processor.join()
         then: 'We should get all the results eventually'
-            true
+            agent.val == 100
     }
 
     def generateSampleImages() {
