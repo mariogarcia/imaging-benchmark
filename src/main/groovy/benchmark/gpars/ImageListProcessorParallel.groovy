@@ -7,7 +7,7 @@ import javax.imageio.ImageIO
 import benchmark.model.ImageListProcessor
 
 /**
- *
+ * Parallel execution of the cropping action
  */
 class ImageListProcessorParallel implements ImageListProcessor {
 

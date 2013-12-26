@@ -7,7 +7,7 @@ import javax.imageio.ImageIO
 import benchmark.model.ImageListProcessor
 
 /**
- *
+ * Using asynchronous invocation of the cropping action.
  */
 class ImageListProcessorAsync implements ImageListProcessor {
 

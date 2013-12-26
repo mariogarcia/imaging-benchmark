@@ -4,16 +4,16 @@ import javax.imageio.ImageIO
 import java.nio.file.Paths
 import org.imgscalr.Scalr
 import groovyx.gpars.actor.DefaultActor
-import groovyx.gpars.agent.Agent
 
 /**
- *
+ * This actor crops every image that is sent to him. It crops the
+ * image but it doesnt persist it, so at the moment is useless
  */
 class ImageListProcessorActor extends DefaultActor {
 
-    Agent agent
+    ImageAgent agent
 
-    ImageListProcessorActor(Agent agent) {
+    ImageListProcessorActor(ImageAgent agent) {
         this.agent = agent
     }
 
@@ -23,7 +23,6 @@ class ImageListProcessorActor extends DefaultActor {
                 if (imageToProcess == 'stop') {
                     stop()
                 } else {
-                    agent.send { increment() }
                     Scalr.crop(
                         ImageIO.read(
                             Paths.get(imageToProcess).toFile()
@@ -33,6 +32,7 @@ class ImageListProcessorActor extends DefaultActor {
                         10,
                         20
                     )
+                    agent.imageAdded()
                 }
             }
         }
