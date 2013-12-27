@@ -18,6 +18,11 @@ interrupt the rest of the specs if Im4Java is not installed in your system.
 
 * BATI: Apache Batik SVG generator (http://xmlgraphics.apache.org/batik/using/svg-generator.html)
 
+== Gpars examples
+
+There some examples using GPars. Those examples try to test how can be applied operations in parallel
+to process several images at the same time.
+
 == Resources
 
 * java2s.com: Many examples (http://www.java2s.com/Code/JavaAPI/java.awt.image/Catalogjava.awt.image.htm)
